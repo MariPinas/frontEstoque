@@ -10,21 +10,24 @@ import {
 import { useRouter } from "expo-router";
 import EmailIcon from "@/assets/svg/emailIcon";
 import EyeOpen from "@/assets/svg/EyeOpen";
+import EyeClosed from "@/assets/svg/EyeClosed";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const router = useRouter();
+  
 
   const handleLogin = () => {
-    if (password !== confirmPassword) {
-      alert("As senhas não coincidem");
-      return;
-    }
-    // logica criar conta
+    // logica criar conta enviar pro back
     console.log("Email:", email);
     console.log("Password:", password);
+    router.push("/dashboard");
+  };
+
+  const ativarVisibilidadeSenha = () => {
+    setIsPasswordVisible(!isPasswordVisible);
   };
 
   return (
@@ -51,16 +54,22 @@ const LoginScreen = () => {
           placeholder="Senha"
           placeholderTextColor={"#3333338e"}
           value={password}
-          secureTextEntry
           onChangeText={setPassword}
           multiline={false}
           numberOfLines={1}
+          secureTextEntry={!isPasswordVisible}
         />
-        <EyeOpen style={styles.icons} />
-        
+        <TouchableOpacity onPress={ativarVisibilidadeSenha} style={styles.icons}>
+          {isPasswordVisible ? (
+            <EyeOpen/>
+          ) : (
+            <EyeClosed/>
+          )}
+        </TouchableOpacity>
       </View>
+        
 
-      {/*Esqueci minha senha*/}
+      {/*Esqueci minha senha - criar a page esqueci senha*/}
       <TouchableOpacity>
         <Text style={styles.forgotPasswordText}>Esqueci minha senha.</Text>
       </TouchableOpacity>
@@ -71,7 +80,7 @@ const LoginScreen = () => {
       </TouchableOpacity>
 
       {/* Link cadastrar */}
-      <TouchableOpacity onPress={() => router.push("/")} style={styles.texto}>
+      <TouchableOpacity onPress={() => router.push("/register")} style={styles.texto}>
         <Text style={styles.loginText}>Não possui uma conta?</Text>
         <Text style={styles.cadText}>Cadastre-se</Text>
       </TouchableOpacity>
@@ -135,6 +144,9 @@ const styles = StyleSheet.create({
   icons: {
     position: "absolute",
     right: 10,
+  },
+  iconContainer: {
+    paddingRight: 10,
   },
 });
 
