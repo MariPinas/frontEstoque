@@ -24,23 +24,19 @@ const CadastroScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
 
   const handleCadastro = async () => {
-    //esperar backend !
-    // try {
-    //authService
-    //const userData = await cadastro(email, password);
+    if (password !== confirmPassword) {
+      Alert.alert("Erro", "As senhas não correspondem.");
+      return;
+    }
+    if(!password || !confirmPassword || !name || !email){
+        Alert.alert("Erro", "Por favor preencha todos os campos");
+    }
 
-    //if userData
-    //if (userData) {
-    // console.log("Cadastro bem-sucedido:", userData);
     router.push("/dashboard");
-    //  }
-    // return null;
-    // } catch (error) {
-    // Alert.alert("Erro", "Email ou senha incorretos.");
-    // }
   };
 
   const ativarVisibilidadeSenha = () => {
@@ -105,11 +101,11 @@ const CadastroScreen = () => {
               <TextInput
                 placeholder="Confirmar Senha"
                 placeholderTextColor={"#3333338e"}
-                value={password}
-                onChangeText={setPassword}
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
                 multiline={false}
                 numberOfLines={1}
-                secureTextEntry={!isPasswordVisible}
+                secureTextEntry
                 style={styles.input}
               />
             </View>
