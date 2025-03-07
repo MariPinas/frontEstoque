@@ -34,6 +34,7 @@ const CadastroScreen = () => {
     }
     if(!password || !confirmPassword || !name || !email){
         Alert.alert("Erro", "Por favor preencha todos os campos");
+        return;
     }
 
     router.push("/dashboard");
