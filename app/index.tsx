@@ -10,10 +10,12 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Platform,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
 import EmailIcon from "@/assets/svg/emailIcon";
 import EyeOpen from "@/assets/svg/EyeOpen";
+import { login } from "@/services/authService";
 import EyeClosed from "@/assets/svg/EyeClosed";
 
 const LoginScreen = () => {
@@ -22,11 +24,22 @@ const LoginScreen = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const router = useRouter();
 
-  const handleLogin = () => {
-    // logica criar conta enviar pro back
-    console.log("Email:", email);
-    console.log("Password:", password);
-    router.push("/dashboard");
+  const handleLogin = async () => {
+
+    //esperar backend !
+    try {
+        //authService
+        const userData = await login(email, password);
+        
+        //if userData
+        if(userData){
+            console.log("Login bem-sucedido:", userData);
+            router.push("/dashboard");
+        }
+        return null;
+      } catch (error) {
+        Alert.alert("Erro", "Email ou senha incorretos.");
+      }
   };
 
   const ativarVisibilidadeSenha = () => {
