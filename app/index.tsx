@@ -1,0 +1,141 @@
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
+import { useRouter } from "expo-router";
+import EmailIcon from "@/assets/svg/emailIcon";
+import EyeOpen from "@/assets/svg/EyeOpen";
+
+const LoginScreen = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const router = useRouter();
+
+  const handleLogin = () => {
+    if (password !== confirmPassword) {
+      alert("As senhas não coincidem");
+      return;
+    }
+    // logica criar conta
+    console.log("Email:", email);
+    console.log("Password:", password);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Image
+        source={require("../assets/images/logo.png")}
+        style={{ width: 150, height: 150, marginBottom: 20 }}
+      />
+
+      {/*Email*/}
+      <View style={styles.input}>
+        <TextInput
+          placeholder="E-mail"
+          placeholderTextColor={"#3333338e"}
+          value={email}
+          onChangeText={setEmail}
+        />
+        <EmailIcon style={styles.icons} />
+      </View>
+
+      {/*Senha */}
+      <View style={styles.input}>
+        <TextInput
+          placeholder="Senha"
+          placeholderTextColor={"#3333338e"}
+          value={password}
+          secureTextEntry
+          onChangeText={setPassword}
+          multiline={false}
+          numberOfLines={1}
+        />
+        <EyeOpen style={styles.icons} />
+        
+      </View>
+
+      {/*Esqueci minha senha*/}
+      <TouchableOpacity>
+        <Text style={styles.forgotPasswordText}>Esqueci minha senha.</Text>
+      </TouchableOpacity>
+
+      {/*Login */}
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Entrar</Text>
+      </TouchableOpacity>
+
+      {/* Link cadastrar */}
+      <TouchableOpacity onPress={() => router.push("/")} style={styles.texto}>
+        <Text style={styles.loginText}>Não possui uma conta?</Text>
+        <Text style={styles.cadText}>Cadastre-se</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#2C3E50",
+  },
+  input: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "90%",
+    paddingRight: 30,
+    paddingLeft: 20,
+    height: 50,
+    padding: 5,
+    marginVertical: 20,
+    backgroundColor: "#F4F4F4F4",
+    borderRadius: 11,
+  },
+  button: {
+    backgroundColor: "#F39C12",
+    padding: 15,
+    width: "90%",
+    alignItems: "center",
+    borderRadius: 11,
+    marginVertical: 25,
+  },
+  buttonText: {
+    color: "#F4F4F4",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  texto: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 10,
+    alignItems: "center",
+  },
+  loginText: {
+    color: "#F4F4F4",
+    fontSize: 15,
+  },
+  cadText: {
+    color: "#F39C12",
+    fontSize: 15,
+    textDecorationLine: "underline",
+  },
+  forgotPasswordText: {
+    color: "#F4F4F4",
+    marginTop: 0,
+  },
+  icons: {
+    position: "absolute",
+    right: 10,
+  },
+});
+
+export default LoginScreen;
