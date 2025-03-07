@@ -84,6 +84,10 @@ const LoginScreen = () => {
         <Text style={styles.loginText}>Não possui uma conta?</Text>
         <Text style={styles.cadText}>Cadastre-se</Text>
       </TouchableOpacity>
+
+      /* Decoracao */
+    <View style={styles.circleTopRight}/>
+    <View style={styles.circleBottomLeft} />
     </View>
   );
 };
@@ -148,6 +152,31 @@ const styles = StyleSheet.create({
   iconContainer: {
     paddingRight: 10,
   },
+  circleBottomLeft:{
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: 343, 
+    height: 52, 
+    borderRadius:51,
+    borderBottomRightRadius: 0, 
+    borderTopEndRadius: 0,
+    borderTopStartRadius:0,
+    backgroundColor: "#f4f4f4",
+  },
+  circleTopRight:{
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    width: 343,
+    height: 52,
+    borderRadius:51,
+    borderBottomLeftRadius: 0, 
+    borderBottomRightRadius: 0, 
+    borderTopStartRadius:0,
+    backgroundColor: "#f4f4f4",
+  },
+
 });
 
 export default LoginScreen;
