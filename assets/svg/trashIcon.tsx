@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const trashIcon = (props:SvgProps) => (
+const TrashIcon = (props:SvgProps) => (
   <Svg
     width={34}
     height={32}
@@ -36,4 +36,4 @@ const trashIcon = (props:SvgProps) => (
     </Defs>
   </Svg>
 );
-export default trashIcon;
+export default TrashIcon;

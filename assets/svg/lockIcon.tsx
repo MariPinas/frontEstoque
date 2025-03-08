@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const lockIcon = (props:SvgProps) => (
+const LockIcon = (props:SvgProps) => (
   <Svg
     width={32}
     height={32}
@@ -28,4 +28,4 @@ const lockIcon = (props:SvgProps) => (
     </Defs>
   </Svg>
 );
-export default lockIcon;
+export default LockIcon;

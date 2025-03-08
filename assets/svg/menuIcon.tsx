@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
-const menuIcon = (props:SvgProps) => (
+const MenuIcon = (props:SvgProps) => (
   <Svg
     width={25}
     height={22}
@@ -14,4 +14,4 @@ const menuIcon = (props:SvgProps) => (
     />
   </Svg>
 );
-export default menuIcon;
+export default MenuIcon;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const importIcon = (props:SvgProps) => (
+const ImportIcon = (props:SvgProps) => (
   <Svg
     width={35}
     height={32}
@@ -31,4 +31,4 @@ const importIcon = (props:SvgProps) => (
     </Defs>
   </Svg>
 );
-export default importIcon;
+export default ImportIcon;

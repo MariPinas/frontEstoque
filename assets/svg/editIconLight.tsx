@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const editIconLight = (props:SvgProps) => (
+const EditIconLight = (props:SvgProps) => (
   <Svg
     width={35}
     height={32}
@@ -31,4 +31,4 @@ const editIconLight = (props:SvgProps) => (
     </Defs>
   </Svg>
 );
-export default editIconLight;
+export default EditIconLight;

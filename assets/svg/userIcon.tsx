@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const userIcon = (props:SvgProps) => (
+const UserIcon = (props:SvgProps) => (
   <Svg
     width={31}
     height={22}
@@ -31,4 +31,4 @@ const userIcon = (props:SvgProps) => (
     </Defs>
   </Svg>
 );
-export default userIcon;
+export default UserIcon;

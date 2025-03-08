@@ -6,15 +6,23 @@ import {
   ScrollView,
   Image,
   StyleSheet,
+  Modal,
 } from "react-native";
 import { useRouter } from "expo-router";
-import AddIcon from "@/assets/svg/addIcon";
+import AddIcon from "@/assets/svg/AddIcon";
+import AppBar from "@/components/AppBar"; 
 
 const Dashboard: React.FC = () => {
   const router = useRouter();
+  const [isMenuVisible, setMenuVisible] = useState(false);
 
   const handleAddProduct = () => {
     router.push("/addProduto");
+  };
+
+
+  const closeMenu = () => {
+    setMenuVisible(false);
   };
 
   const totalItems: number = 120;
@@ -28,7 +36,6 @@ const Dashboard: React.FC = () => {
     description: "Notebook Dell com Intel Core i7, 16GB de RAM, 512GB SSD.",
   };
 
-  //lista de produtos baixa quantidade estoque
   const lowStockProducts = [
     { name: "Mouse Logitech", quantity: 5, price: "R$ 100.00" },
     { name: "Teclado Mecânico Corsair", quantity: 4, price: "R$ 350.00" },
@@ -37,76 +44,76 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* Adicionar Produto */}
-      <TouchableOpacity onPress={handleAddProduct} style={styles.addProductBtn}>
-        <AddIcon />
-        <Text style={styles.addProductText}>Adicionar novo produto</Text>
-      </TouchableOpacity>
+    <View style={{ flex: 1 }}>
+      {/* AppBar*/}
+      <AppBar pageTitle="Dashboard" userName="Usuário"/>
+      <ScrollView contentContainerStyle={styles.container}>
+        <TouchableOpacity onPress={handleAddProduct} style={styles.addProductBtn}>
+          <AddIcon />
+          <Text style={styles.addProductText}>Adicionar novo produto</Text>
+        </TouchableOpacity> 
 
-      {/* Resumo do Estoque */}
-      <Text style={styles.sectionTitle}>Resumo do Estoque</Text>
-      <View style={styles.stockSummary}>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryText}>Total de itens no estoque:</Text>
-          <Text style={styles.summaryNumber}>{totalItems}</Text>
-        </View>
-        <View style={styles.divider} />
-
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryText}>Valor total em estoque:</Text>
-          <Text style={styles.summaryNumber}>{totalValueInStock}</Text>
-        </View>
-        <View style={styles.divider} />
-
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryText}>Valor total de saídas:</Text>
-          <Text style={styles.summaryNumber}>{totalValueOut}</Text>
-        </View>
-        <View style={styles.divider} />
-      </View>
-
-      {/* Produto em maior quantidade */}
-      <Text style={styles.sectionTitle}>Produto em maior quantidade</Text>
-      <ScrollView contentContainerStyle={styles.productContainer}>
-        <Image
-          source={require("../assets/images/logo.png")}
-          style={styles.productImage}
-        />
-        <Text style={styles.productName}>{product.name}</Text>
-
-        <View style={styles.productRow}>
-          <Text style={styles.productLabel}>Quantidade:</Text>
-          <Text style={styles.productValue}>{product.quantity}</Text>
-        </View>
-
-        <View style={styles.productRow}>
-          <Text style={styles.productLabel}>Valor Unitário:</Text>
-          <Text style={styles.productValue}>{product.price}</Text>
-        </View>
-
-        <Text style={styles.productDescription}>{product.description}</Text>
-      </ScrollView>
-
-      {/* Produtos em baixa quantidade */}
-      <Text style={styles.sectionTitle}>Produtos em baixa quantidade</Text>
-      <View style={styles.lowStockContainer}>
-        {lowStockProducts.map((item, index) => (
-          <View key={index} style={styles.lowStockItem}>
-            <Text style={styles.productName}>{item.name}</Text>
-            <View style={styles.productRow}>
-              <Text style={styles.productLabel}>Quantidade:</Text>
-              <Text style={styles.productValue}>{item.quantity}</Text>
-            </View>
-
-            <View style={styles.productRow}>
-              <Text style={styles.productLabel}>Valor Unitário:</Text>
-              <Text style={styles.productValue}>{item.price}</Text>
-            </View>
+        <Text style={styles.sectionTitle}>Resumo do Estoque</Text>
+        <View style={styles.stockSummary}>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Total de itens no estoque:</Text>
+            <Text style={styles.summaryNumber}>{totalItems}</Text>
           </View>
-        ))}
-      </View>
-    </ScrollView>
+          <View style={styles.divider} />
+
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Valor total em estoque:</Text>
+            <Text style={styles.summaryNumber}>{totalValueInStock}</Text>
+          </View>
+          <View style={styles.divider} />
+
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Valor total de saídas:</Text>
+            <Text style={styles.summaryNumber}>{totalValueOut}</Text>
+          </View>
+          <View style={styles.divider} />
+        </View>
+
+        <Text style={styles.sectionTitle}>Produto em maior quantidade</Text>
+        <ScrollView contentContainerStyle={styles.productContainer}>
+          <Image
+            source={require("../assets/images/logo.png")}
+            style={styles.productImage}
+          />
+          <Text style={styles.productName}>{product.name}</Text>
+
+          <View style={styles.productRow}>
+            <Text style={styles.productLabel}>Quantidade:</Text>
+            <Text style={styles.productValue}>{product.quantity}</Text>
+          </View>
+
+          <View style={styles.productRow}>
+            <Text style={styles.productLabel}>Valor Unitário:</Text>
+            <Text style={styles.productValue}>{product.price}</Text>
+          </View>
+
+          <Text style={styles.productDescription}>{product.description}</Text>
+        </ScrollView>
+
+        <Text style={styles.sectionTitle}>Produtos em baixa quantidade</Text>
+        <View style={styles.lowStockContainer}>
+          {lowStockProducts.map((item, index) => (
+            <View key={index} style={styles.lowStockItem}>
+              <Text style={styles.productName}>{item.name}</Text>
+              <View style={styles.productRow}>
+                <Text style={styles.productLabel}>Quantidade:</Text>
+                <Text style={styles.productValue}>{item.quantity}</Text>
+              </View>
+
+              <View style={styles.productRow}>
+                <Text style={styles.productLabel}>Valor Unitário:</Text>
+                <Text style={styles.productValue}>{item.price}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -117,7 +124,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
-
   addProductText: {
     alignSelf: "center",
     color: "#333333",

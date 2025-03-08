@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const estoqueIcon = (props: SvgProps) => (
+const EstoqueIcon = (props: SvgProps) => (
   <Svg
     width={31}
     height={30}
@@ -31,4 +31,4 @@ const estoqueIcon = (props: SvgProps) => (
     </Defs>
   </Svg>
 );
-export default estoqueIcon;
+export default EstoqueIcon;

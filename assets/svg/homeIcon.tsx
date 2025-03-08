@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const homeIcon = (props:SvgProps) => (
+const HomeIcon = (props:SvgProps) => (
   <Svg
     width={27}
     height={30}
@@ -31,4 +31,4 @@ const homeIcon = (props:SvgProps) => (
     </Defs>
   </Svg>
 );
-export default homeIcon;
+export default HomeIcon;

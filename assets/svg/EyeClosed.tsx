@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const SVGComponent = (props: SvgProps) => (
+const EyeClosed = (props: SvgProps) => (
   <Svg
     width={25}
     height={22}
@@ -31,4 +31,4 @@ const SVGComponent = (props: SvgProps) => (
     </Defs>
   </Svg>
 );
-export default SVGComponent;
+export default EyeClosed;

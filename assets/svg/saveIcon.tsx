@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Rect, Defs, Pattern, Use, Image, SvgProps } from "react-native-svg";
-const saveIcon = (props:SvgProps) => (
+const SaveIcon = (props:SvgProps) => (
   <Svg
     width={37}
     height={32}
@@ -31,4 +31,4 @@ const saveIcon = (props:SvgProps) => (
     </Defs>
   </Svg>
 );
-export default saveIcon;
+export default SaveIcon;
