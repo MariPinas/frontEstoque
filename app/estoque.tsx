@@ -13,6 +13,7 @@ import { useRouter } from "expo-router";
 import EditIconDark from "@/assets/svg/editIconDark";
 import AddIcon from "@/assets/svg/AddIcon";
 import SearchIcon from "@/assets/svg/searchIcon";
+import AppBar from "@/components/AppBar";
 
 type Product = {
   id: number;
@@ -53,55 +54,56 @@ const Estoque: React.FC = () => {
   );
 
   return (
-    <View style={styles.container}>
-      {/* Campo de Pesquisar*/}
-
-      <View>
-        {/* Campo de Pesquisar*/}
-        <View style={styles.inputWrapper}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Buscar produto"
-            placeholderTextColor={"#767575"}
-            value={searchTerm}
-            onChangeText={setSearchTerm}
-          />
-          <SearchIcon style={styles.searchIconWrapper} />
-        </View>
-      </View>
-
-      {/*Add Product btn */}
-      <TouchableOpacity
-        style={styles.addProductBtn}
-        onPress={() => router.push("/addProduto")}
-      >
-        <AddIcon />
-        <Text style={styles.addProductText}>Adicionar novo produto</Text>
-      </TouchableOpacity>
-
-      {/* Lista de produtos estoque */}
-      <Text style={styles.sectionTitle}>Produtos</Text>
-      <ScrollView style={styles.productList}>
-        {filteredProducts.map((product) => (
-          <View key={product.id} style={styles.productContainer}>
-            <Image
-              source={{ uri: product.imageUrl }}
-              style={styles.productImage}
+    <View style={{ flex: 1 }}>
+      <AppBar pageTitle="Estoque" userName="Usuário" />
+      <ScrollView style={styles.container}>
+        <View>
+          {/* Campo de Pesquisar*/}
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Buscar produto"
+              placeholderTextColor={"#767575"}
+              value={searchTerm}
+              onChangeText={setSearchTerm}
             />
-            <View style={styles.productInfo}>
-              <Text style={styles.productName}>{product.name}</Text>
-              <Text style={styles.productQuantity}>
-                Qnt: {product.quantity}
-              </Text>
-              <Text style={styles.productPrice}>
-                R$ {product.price.toFixed(2)}
-              </Text>
-            </View>
-            <TouchableOpacity style={styles.editIcon}>
-              <EditIconDark />
-            </TouchableOpacity>
+            <SearchIcon style={styles.searchIconWrapper} />
           </View>
-        ))}
+        </View>
+
+        {/*Add Product btn */}
+        <TouchableOpacity
+          style={styles.addProductBtn}
+          onPress={() => router.push("/addProduto")}
+        >
+          <AddIcon />
+          <Text style={styles.addProductText}>Adicionar novo produto</Text>
+        </TouchableOpacity>
+
+        {/* Lista de produtos estoque */}
+        <Text style={styles.sectionTitle}>Produtos</Text>
+        <View style={styles.productList}>
+          {filteredProducts.map((product) => (
+            <View key={product.id} style={styles.productContainer}>
+              <Image
+                source={{ uri: product.imageUrl }}
+                style={styles.productImage}
+              />
+              <View style={styles.productInfo}>
+                <Text style={styles.productName}>{product.name}</Text>
+                <Text style={styles.productQuantity}>
+                  Qnt: {product.quantity}
+                </Text>
+                <Text style={styles.productPrice}>
+                  R$ {product.price.toFixed(2)}
+                </Text>
+              </View>
+              <TouchableOpacity style={styles.editIcon}>
+                <EditIconDark />
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
@@ -110,7 +112,7 @@ const Estoque: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding:20,
   },
   inputWrapper: {
     width: "100%",
