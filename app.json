@@ -4,6 +4,10 @@
     "slug": "frontEstoque",
     "version": "1.0.0",
     "orientation": "portrait",
+    "permissions": [
+      "CAMERA",
+      "MEDIA_LIBRARY"
+    ],
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",

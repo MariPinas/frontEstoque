@@ -1,18 +1,19 @@
-// app/adicionar-produto.tsx
+// app/addProduto.tsx
 import React, { useState } from "react";
 import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { launchImageLibrary } from "react-native-image-picker";
 import { useRouter } from "expo-router";
 import CloseIcon from "@/assets/svg/closeIcon";
 import ImportIcon from "@/assets/svg/importIcon";
+import * as ImagePicker from 'expo-image-picker';
 
 const AddProductScreen = () => {
   const router = useRouter();
@@ -23,22 +24,24 @@ const AddProductScreen = () => {
   const [productDescription, setProductDescription] = useState("");
   const [productImage, setProductImage] = useState<string | null>(null);
 
-  const handleImagePicker = () => {
-    launchImageLibrary(
-      {
-        mediaType: "photo",
-        includeBase64: false,
-      },
-      (response) => {
-        if (response.didCancel) {
-          console.log("A seleção de imagem foi cancelada");
-        } else if (response.errorCode) {
-          console.log("Erro ao selecionar imagem: ", response.errorMessage);
-        } else {
-          setProductImage(response.assets?.[0].uri ?? null);
-        }
+  const handleImagePicker = async () => {
+    // permissao galeria
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status === 'granted') {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [4, 3], 
+        quality: 1, 
+      });
+
+      if (!result.canceled) {
+        setProductImage(result.assets[0].uri);
+      } else {
+        console.log('Seleção de imagem cancelada');
       }
-    );
+    } else {
+      console.log('Permissão negada para acessar a galeria');
+    }
   };
 
   const handleSaveProduct = () => {
@@ -55,7 +58,7 @@ const AddProductScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Adicionar Produto</Text>
         <TouchableOpacity
@@ -112,7 +115,7 @@ const AddProductScreen = () => {
           <Text style={styles.saveBtnTxt}>Salvar</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -181,7 +184,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 20,
     borderRadius: 5,
-    marginBottom: 10,
+    marginBottom: 50,
     alignSelf:"center",
   },
   saveBtnTxt: {
