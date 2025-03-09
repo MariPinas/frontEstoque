@@ -109,6 +109,7 @@ const LoginScreen = () => {
             <Text style={styles.cadText}>Cadastre-se</Text>
           </TouchableOpacity>
         </View>
+        
       </TouchableWithoutFeedback>
       {/* Decoracao */}
       <View style={styles.circleTopRight} />

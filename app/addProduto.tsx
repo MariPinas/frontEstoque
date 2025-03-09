@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { launchImageLibrary } from "react-native-image-picker";
 import { useRouter } from "expo-router";
 import CloseIcon from "@/assets/svg/closeIcon";
 import ImportIcon from "@/assets/svg/importIcon";
@@ -58,6 +57,7 @@ const AddProductScreen = () => {
   };
 
   return (
+    
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Adicionar Produto</Text>
